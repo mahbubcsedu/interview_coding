@@ -1,4 +1,4 @@
-package ds.graph;
+package generalpractice.graph;
 
 import java.util.ArrayList;
 

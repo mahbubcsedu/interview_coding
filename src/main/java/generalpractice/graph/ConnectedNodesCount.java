@@ -1,11 +1,14 @@
-package ds.graph;
+package generalpractice.graph;
 
 public class ConnectedNodesCount {
 	private boolean[] visited;
 	private int count;
+	private int time;
+	private int parent;
 	
 	public ConnectedNodesCount(Graph g, int s) {
 		this.visited=new boolean[g.V()];
+		parent=-1;
 		dfs(g,s);
 	}
 	
