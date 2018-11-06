@@ -2,50 +2,54 @@ package company.zillow;
 
 
 
-import java.lang.reflect.Field;
-import java.math.BigInteger;
+import java.nio.charset.Charset;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Random;
 import java.util.UUID;
- 
+
 
 public class RandomObjectCreate {
 
- 
+	public static Date getRandomeDate() 
+	{
+		GregorianCalendar gc = new GregorianCalendar();
+		int year = randBetween(1900, 2010);
+
+		gc.set(GregorianCalendar.YEAR, year);
+		int dayOfYear = randBetween(1, gc.getActualMaximum(GregorianCalendar.DAY_OF_YEAR));
+		gc.set(GregorianCalendar.DAY_OF_YEAR, dayOfYear);
+		return gc.getTime();
+		//return gc.get(GregorianCalendar.YEAR) + "-" + (gc.get(GregorianCalendar.MONTH) + 1) + "-" + gc.get(GregorianCalendar.DAY_OF_MONTH);
+
+	}
+
+	public static int randBetween(int start, int end) {
+		return start + (int)Math.round(Math.random() * (end - start));
+	}
+
+
+	public String getRandomeString() {
+		String uuid = UUID.randomUUID().toString();
+        return uuid;
+        
+		//byte[] array = new byte[20]; // length is bounded by 7
+		//new Random().nextBytes(array);
+		//String generatedString = new String(array, Charset.forName("UTF-8"));
+		//return generatedString;
+	}
+
+	public double getRandomeNumber() {
+
+		Random n=new Random();
+		return 20+200*n.nextDouble();
+
+	}
 	
-	RandomObjectCreate(){}
-    private Random random = new Random();
- 
-    public <T> T createAndFill(Class<T> clazz) throws Exception {
-        T instance = clazz.newInstance();
-        for(Field field: clazz.getDeclaredFields()) {
-            field.setAccessible(true);
-            Object value = getRandomValueForField(field);
-            field.set(instance, value);
-        }
-        return instance;
-    }
- 
-    private Object getRandomValueForField(Field field) throws Exception {
-        Class<?> type = field.getType();
- 
-        // Note that we must handle the different types here! This is just an 
-        // example, so this list is not complete! Adapt this to your needs!
-        if(type.isEnum()) {
-            Object[] enumValues = type.getEnumConstants();
-            return enumValues[random.nextInt(enumValues.length)];
-        } else if(type.equals(Integer.TYPE) || type.equals(Integer.class)) {
-            return random.nextInt();
-        } else if(type.equals(Long.TYPE) || type.equals(Long.class)) {
-            return random.nextLong();
-        } else if(type.equals(Double.TYPE) || type.equals(Double.class)) {
-            return random.nextDouble();
-        } else if(type.equals(Float.TYPE) || type.equals(Float.class)) {
-            return random.nextFloat();
-        } else if(type.equals(String.class)) {
-            return UUID.randomUUID().toString();
-        } else if(type.equals(BigInteger.class)){
-            return BigInteger.valueOf(random.nextInt());
-        }
-        return createAndFill(type);
-    }
+	public double getRandomeInteger() {
+
+		Random n=new Random();
+		return 20000*n.nextInt();
+
+	}
 }

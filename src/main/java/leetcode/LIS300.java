@@ -5,6 +5,7 @@ public class LIS300
    /**
     * The wrong way I thought, but its not possible if you can see the second example
     * with 3,2,6,4,5
+    * still giving wrong anser /TODO
     */
 	public static int getLongestIncreasingSubSequence(int[] nums) {
 		int maxLen=0;

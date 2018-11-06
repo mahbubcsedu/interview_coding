@@ -75,7 +75,7 @@ public class MedianTwoSortedArray4 {
 			int j=halfLen-i;
 			
 			//i should be less than iMax as it is the right boundary for A
-			//if B's left side's last element is greater than A's right side's first, that means, median is in left of B[j-1
+			//if B's left side's last element is greater than A's right side's first, that means, median is in left of B[j-1]
 			if(i<iMax && B[j-1] > A[i])
 			{
 				iMin=i+1; // so, more elements from right of A will be part of left of the result

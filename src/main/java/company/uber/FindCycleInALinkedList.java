@@ -21,7 +21,9 @@ public class FindCycleInALinkedList {
 	  * Also need a check for null
 	  */
 	 if( head== null) return true;
-	 while(slow.next!=null && fast.next.next!=null)
+	 //you cannot get the cycle if you check fast.next.next and slow.next.next as for these cases you will require at least 4 nodes
+	 //so check for current node as null if not if it's next is null, you are fine to navigate to the next with this check
+	 while(slow!=null && fast.next!=null)
 	 {
 		 fast=fast.next.next;
 		 slow=slow.next;

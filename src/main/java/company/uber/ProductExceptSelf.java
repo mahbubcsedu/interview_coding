@@ -64,12 +64,27 @@ public class ProductExceptSelf {
 
 		if(countZero>1)
 			Arrays.fill(nums, 0);
+		else if(countZero==1) {
+			//if there is only one zero, all will be zero except the position of zero
+			for(int i=0; i<nums.length;i++) {
+				if(nums[i]==0) {
+
+					nums[i]=result;
+				}
+				else {
+					nums[i]=0;
+				}
+			}
+		}
 		else {
 			for(int i=0; i<nums.length;i++) {
-				if(nums[i]!=0) {
+				if(nums[i]!=0 ) {
 
 					nums[i]=result/nums[i];
 				}
+				//else {
+				//	nums[i]=result;
+				//}
 			}
 		}
 
@@ -77,7 +92,8 @@ public class ProductExceptSelf {
 	}
 
 	public static void main(String args[]) {
-		int[]input= {1,2,0,3,4,0};
+		int[]input= {1,2,3,3,4,1};
+		int[] leetin= {1,0};
 
 		int res[]=getProductSelf(input);
 

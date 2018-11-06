@@ -28,7 +28,7 @@ public class Person{
 	}
 
 	public Person(String ssn, Date dataOfBirth, String firstName, String lastname, Double heightln, Double weightLb) {
-		super();
+		//super();
 		this.ssn = ssn;
 		this.dataOfBirth = dataOfBirth;
 		this.firstName = firstName;

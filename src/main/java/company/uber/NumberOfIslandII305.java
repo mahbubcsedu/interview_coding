@@ -9,15 +9,15 @@ public class NumberOfIslandII305 {
 		int rank[];
 		int[][] grid;
 		int nOfIsland;
-		
+
 		//for()
 		public UnionFind(int[][] grid) {
-	       this.grid=grid;
-	       this.nOfIsland=0;
-		   parent=new int[grid.length*grid[0].length];
-		   rank=new int[grid.length*grid[0].length];
+			this.grid=grid;
+			this.nOfIsland=0;
+			parent=new int[grid.length*grid[0].length];
+			rank=new int[grid.length*grid[0].length];
 		}
-		 
+
 		void MakeSet(int[] land) {
 			int landPos=land[0]*this.grid[0].length+land[1];
 			parent[landPos]=landPos;
@@ -30,16 +30,16 @@ public class NumberOfIslandII305 {
 				parent[x]=find(parent[x]);
 			return parent[x];
 		}
-		
+
 		void union(int x, int y) {
 			int xR=find(x);
 			int yR=find(y);
-			
+
 			if(xR==yR)
 				return;
 			if(rank[xR]>rank[yR]) {
 				parent[y]=x;
-				
+
 			}else if(rank[xR] < rank[yR]) {
 				parent[x]=y;
 			}
@@ -48,10 +48,10 @@ public class NumberOfIslandII305 {
 				rank[y]++;
 			}
 			this.nOfIsland--;
-			
+
 		}
-		
-		 void addLand(int[] newLand) {
+
+		void addLand(int[] newLand) {
 			grid[newLand[0]][newLand[1]]=1;
 			MakeSet(newLand);
 		}
@@ -64,17 +64,20 @@ public class NumberOfIslandII305 {
 	 * @return
 	 */
 	public static int getNumberOfIslands(int m, int n, int[][] addLands) {
+		
 		int[][] grid=new int[m][n];
+		
 		for(int[] row: grid) {
-		Arrays.fill(row, -1);
+			Arrays.fill(row, -1);
 		}
+		
 		UnionFind uf=new UnionFind(grid);
-		
+
 		final int[][] DIRS= {{1,0},{0,1},{0,-1},{-1,0}}; 
-		
+
 		for(int[] newLand : addLands) {
 			uf.addLand(newLand);
-			
+
 			//find out the all neighbors and union them if they are 1
 			for(int[] dir: DIRS) {
 				int nextX=newLand[0]+dir[0];
@@ -87,7 +90,7 @@ public class NumberOfIslandII305 {
 		return uf.nOfIsland;
 		//return 0;
 	}
-	
+
 	public static void main(String args[]) {
 		int[][] newLands={{0,0}, {0,1}, {1,2}, {2,1},{2,2}};
 		System.out.println(getNumberOfIslands(3,3,newLands));

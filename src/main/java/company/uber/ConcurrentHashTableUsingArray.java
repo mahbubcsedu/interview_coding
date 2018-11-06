@@ -1,6 +1,12 @@
+//package company.uber;
 package company.uber;
-import java.util.*;
 
+import java.util.*;
+/**
+ * @link https://www.careercup.com/question?id=5813643672289280
+ * @author mahbub
+ *
+ */
 public class ConcurrentHashTableUsingArray {
 	
 	private static final int HASH_SIZE = 128; // bucket size

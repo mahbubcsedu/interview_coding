@@ -27,7 +27,7 @@ public class DisjointSet{
 	  }
 	  
 	  /**
-	   *  tow set will be union by their representative or union by rank. Union by any order
+	   *  two sets will be union by their representative or union by rank. Union by any order
 	   *  is also explained in the above link but for solving any problem, following best 
 	   *  approach is better
 	   */
