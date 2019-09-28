@@ -36,9 +36,9 @@ public class CouseSchedule207 {
 		}
 	}
 
-	boolean sortInstallation(int[][] dependency) {
+	boolean sortInstallation(int[][] dependency) 
+	{
 		addEdges(dependency);
-
 		Deque<Integer> order= new LinkedList<>();
 		Map<Integer, Boolean> visited=new HashMap<>();
 		Map<Integer, COLOR> color=new HashMap<>();
@@ -57,9 +57,6 @@ public class CouseSchedule207 {
 			}
 		}
 		return true;
-		//while(!order.isEmpty()) {
-		// 	System.out.println(order.removeFirst());
-		//}
 
 	}
 

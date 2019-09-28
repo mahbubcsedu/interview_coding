@@ -16,7 +16,7 @@ public class AllBinaryTrees {
 		}
 	}
 	/**
-	 * The cost of this algorithm is catalan number because, for each number there C(n)=sum(i,n)(C(n-i)C(i-1) which can 
+	 * The cost of this algorithm is Catalan number because, for each number there C(n)=sum(i,n)(C(n-i)C(i-1) which can 
 	 * be proved as 2n!/n!(n+1)!
 	 * @param numOfNodes
 	 * @return
