@@ -9,18 +9,18 @@ public class SudukoSolver {
 	private static final int EMPTY_ENTRY=0;
 	//for leetcode the board is char and empty is "."
 	public static boolean solveSudoku(List<List<Integer>> board) {
-    
+
 		if(board==null || board.size()==0)
 			return false;
-		
-		
+
+
 		for(int i=0;i<board.size();i++) {
 			for(int j=0;j<board.get(0).size();j++) {
 				if(board.get(i).get(j)==EMPTY_ENTRY) {
 					for(int n=1;n<=9;n++) {
 						if(isValid(board,i,j,n)) {
 							board.get(i).set(j, n);
-							
+
 							if(solveSudoku(board))
 								return true;
 							else board.get(i).set(j, EMPTY_ENTRY);
@@ -32,8 +32,8 @@ public class SudukoSolver {
 		}
 		return true;
 	}
-	
-	
+
+
 	private static boolean isValid(List<List<Integer>> board, int x, int y, int val) {
 		for(int i=0;i<9;i++) {
 			//check for the current row
@@ -50,8 +50,8 @@ public class SudukoSolver {
 		}
 		return true;
 	}
-	
-	
+
+
 	public static void main(String args[]) {
 		List<List<Integer>> board=new ArrayList<>();
 		for(int i=0;i<9;i++)
@@ -62,7 +62,7 @@ public class SudukoSolver {
 			board.add(t);
 			t = new ArrayList<>();
 		}
-		
+
 		board.get(0).set(7, 7);
 		boolean is=solveSudoku(board);
 		System.out.println(is);

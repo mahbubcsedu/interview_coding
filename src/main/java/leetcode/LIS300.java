@@ -2,11 +2,11 @@ package leetcode;
 
 public class LIS300 
 {
-   /**
-    * The wrong way I thought, but its not possible if you can see the second example
-    * with 3,2,6,4,5
-    * still giving wrong anser /TODO
-    */
+	/**
+	 * The wrong way I thought, but its not possible if you can see the second example
+	 * with 3,2,6,4,5
+	 * still giving wrong anser /TODO
+	 */
 	public static int getLongestIncreasingSubSequence(int[] nums) {
 		int maxLen=0;
 		int curLen=0;
@@ -23,7 +23,7 @@ public class LIS300
 			}
 			maxLen=Math.max(maxLen, curLen);
 		}
-		
+
 		return maxLen;
 	}
 	/**
@@ -35,38 +35,38 @@ public class LIS300
 	 */
 	public static int getLongIncSubseqBForce(int[] nums) {
 		//TODO:
-		
+
 		return 0;
 	}
-	
+
 	public static int getLongInSubseqRecur(int[] nums) {
 		//TODO:
 		return 0;
 	}
-	
+
 	public static int getLongInSubseqDP(int[] nums) {
 		//TODO:
-		
+
 		return 0;
 	}
 	public static void main(String args[]) 
 	{
-		
-	//	LongestIncreasingSubSequence300 obj=new LongestIncreasingSubSequence300();
-		
+
+		//	LongestIncreasingSubSequence300 obj=new LongestIncreasingSubSequence300();
+
 		if(4==getLongestIncreasingSubSequence(new int[] {10,9,2,5,3,7,101,18})) 
 		{
 			System.out.println("correct");
-		
+
 		}else
 		{
 			System.out.println("incorrect");
 		}
-		
+
 		if(4==getLongestIncreasingSubSequence(new int[] {3,2,6,4,5})) 
 		{
 			System.out.println("correct");
-		
+
 		}else
 		{
 			System.out.println("incorrect");

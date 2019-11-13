@@ -33,37 +33,37 @@ public class ShortestPathWithFewestEdge {
 	 *7. Also this will keep an ID for the vertex and its parent which is intially null
 	 *8. also we will define a comparable function to handle this using heap or sorting collections
 	 */
-	
-	 static class VertexWithDistance{
+
+	static class VertexWithDistance{
 		Integer distance;
 		GraphVertex vertex;
-		
+
 		public VertexWithDistance(GraphVertex vertex, int disance) {
 			this.distance=distance;
 			this.vertex=vertex;
 		}
 	}
-	
+
 	/**
 	 * we will define another class to keep the information of distance and number of endge of the vertex rom the source
 	 * 
 	 */
-	 static class DistanceWithFewestEdge {
+	static class DistanceWithFewestEdge {
 		Integer distance;
 		public Integer minNumEdge;
-		
+
 		DistanceWithFewestEdge(Integer distance, Integer minNumEdge){
 			this.distance=distance;
 			this.minNumEdge=minNumEdge;
 		}
 	}
-	
-	 /**
-	  * This class is the Vertex class with the properties of distance and vetex, then distance to min edge
-	  * we need two class as we not only have to provide weight of the edge but also the number of edge from the source
-	  * @author mahbub
-	  *
-	  */
+
+	/**
+	 * This class is the Vertex class with the properties of distance and vetex, then distance to min edge
+	 * we need two class as we not only have to provide weight of the edge but also the number of edge from the source
+	 * @author mahbub
+	 *
+	 */
 	public static class GraphVertex implements Comparable<GraphVertex>{
 		//intialize a vertex with infinite distance and 0 number of edge as it's distance from itself is 0;
 		public DistanceWithFewestEdge dfe;
@@ -71,20 +71,20 @@ public class ShortestPathWithFewestEdge {
 		public List<VertexWithDistance> edges;
 		public int id; //id of this vertex, we also can keep the label
 		public GraphVertex pred;//=null; //the parent of in the shortest path
-		
-		
+
+
 		public GraphVertex(int id) {
 			this.id=id;
 			edges=new ArrayList<>();
 			dfe=new DistanceWithFewestEdge(Integer.MAX_VALUE,0);
 			pred=null;
 		}
-		
+
 		/**
 		 * we will define the comparable functions to sort the vertex in sorted collections based on these condidtions
 		 * 1. the distance is the first key to compare, if both are equal, then it will compare based on number of edges
 		 */
-		
+
 		@Override
 		public int compareTo(GraphVertex o) {
 			if(dfe.distance!=o.dfe.distance) {
@@ -95,36 +95,36 @@ public class ShortestPathWithFewestEdge {
 			}
 			return Integer.compare(id, o.id);
 		}
-		
+
 		//we weill also write method ot compare two objects and it requires 4 diferent section of implements
-		
+
 		@Override
 		public boolean equals(Object obj) {
 			if(obj == null || !(obj instanceof GraphVertex))
 				return false;
-			
+
 			if(this==obj)
 				return true;
 			GraphVertex that=(GraphVertex)obj;
 			return id==that.id &&
 					dfe.distance.equals(that.dfe.distance) &&
 					dfe.minNumEdge.equals(that.dfe.minNumEdge);
-			
+
 		}
-		
+
 		@Override
 		public int hashCode() {
 			return Objects.hash(dfe.distance, dfe.minNumEdge);
 		}
-	
-		
+
+
 	}//end of GraphVertex class
-	
-	
+
+
 	public static void dijstrajShortestPath(GraphVertex s, GraphVertex d) {
 		//Source vertex will start with 0 distance and 0 edge
 		s.dfe=new DistanceWithFewestEdge(0,0);
-		
+
 		//now define a minHeap where the neighbours vertex will be stored by sorted order provided in the previous class
 		SortedSet<GraphVertex> nodeSet=new TreeSet<>();
 		//its a BFS search but the neighbors will be sorted as greedy algorithm will be applied on them
@@ -134,15 +134,15 @@ public class ShortestPathWithFewestEdge {
 			GraphVertex u=nodeSet.first();
 			if(u.equals(d))
 				break;
-			
+
 			//now remove as we will process it now, and if required will add again updating its distance and edge
 			nodeSet.remove(nodeSet.first());
-			
+
 			for(VertexWithDistance v: u.edges) {
 				//the distance will be u distance from source + v distance, 
 				int vDist=u.dfe.distance+v.distance;
 				int vNumEdges=u.dfe.minNumEdge+1;
-				
+
 				if(v.vertex.dfe.distance > v.distance || (v.vertex.dfe.distance==vDist 
 						&& v.vertex.dfe.minNumEdge > vNumEdges)) {
 					nodeSet.remove(v);
@@ -150,34 +150,34 @@ public class ShortestPathWithFewestEdge {
 					v.vertex.dfe=new DistanceWithFewestEdge(vDist,vNumEdges);
 					nodeSet.add(v.vertex);
 				}
-				
+
 			}
 		}
-		
+
 		outputShortestPath(d);
 	}
-	
+
 	private static void outputShortestPath(GraphVertex v) {
 		if(v!=null) {
 			outputShortestPath(v.pred);
 			System.out.println(v.id+" ");
 		}
 	}
-	
+
 	public static void buildGraph(List<List<Integer>> graph) {
 		List<GraphVertex> g=new ArrayList<>();
-		
+
 		for(List<Integer> edge: graph) {
 			if(isPresent(edge.get(0),g)==null) {
 				GraphVertex v=new GraphVertex(edge.get(0));
-				
+
 				g.add(v);
 			}
 		}
-		
-		
+
+
 	}
-	
+
 	public static GraphVertex isPresent(int vertexId, List<GraphVertex> g) {
 		for(GraphVertex v: g) {
 			if(vertexId==v.id)
@@ -185,20 +185,20 @@ public class ShortestPathWithFewestEdge {
 		}
 		return null;
 	}
-	
+
 	public static void main(String args[]) {
 		/*GraphVertex v=new GraphVertex(1);
 		GraphVertex v=new GraphVertex(1);
 		GraphVertex v=new GraphVertex(1);
 		GraphVertex v=new GraphVertex(1);
 		GraphVertex v=new GraphVertex(1);
-		
+
 		GraphVertex v=new GraphVertex(1);
 		GraphVertex v=new GraphVertex(1);
 		GraphVertex v=new GraphVertex(1);
-		
-		
+
+
 		v.edges*/
 	}
-	
+
 }
