@@ -19,7 +19,7 @@ public class AddSearchWord211 {
 * search("b..") -> true
 
 * Note:
-* You may assume that all words are consist of lowercase letters a-z.
+* You may assume that all words are consist of lower case letters a-z.
  */
 	
 /**
@@ -33,7 +33,7 @@ public AddSearchWord211() {
 	
  /**
   * @author mahbub
-  * In another problem, I have tried using hashmap for leaves, here we will try using array	
+  * In another problem, I have tried using hash map for leaves, here we will try using array	
   */
 	
   public class TrieNode {
